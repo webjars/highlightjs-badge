@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highlightjs-badge</artifactId>
-    <version>0.1.6-SNAPSHOT</version>
+    <version>0.1.6</version>
     <name>highlightjs-badge</name>
     <description>WebJar for highlightjs-badge</description>
     <url>http://webjars.org</url>
@@ -33,7 +33,7 @@
         <developer>
             <id>sinattieng</id>
             <name>Stefano Sinatti</name>
-            <email></email>
+            <email />
         </developer>
     </developers>
 
@@ -49,7 +49,7 @@
         <url>http://github.com/webjars/highlightjs-badge</url>
         <connection>scm:git:https://github.com/webjars/highlightjs-badge.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/highlightjs-badge.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>highlightjs-badge-0.1.6</tag>
     </scm>
     
     <build>
@@ -78,9 +78,9 @@
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <mkdir dir="${destDir}"/>
-                                <get src="${upstream.url}/highlightjs-badge.js" dest="${destDir}"/>
-                                <get src="${upstream.url}/highlightjs-badge.min.js" dest="${destDir}"/>
+                                <mkdir dir="${destDir}" />
+                                <get src="${upstream.url}/highlightjs-badge.js" dest="${destDir}" />
+                                <get src="${upstream.url}/highlightjs-badge.min.js" dest="${destDir}" />
                             </target>
                         </configuration>
                     </execution>
