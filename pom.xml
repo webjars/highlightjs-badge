@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highlightjs-badge</artifactId>
-    <version>0.1.6</version>
+    <version>0.1.7-SNAPSHOT</version>
     <name>highlightjs-badge</name>
     <description>WebJar for highlightjs-badge</description>
     <url>http://webjars.org</url>
@@ -49,7 +49,7 @@
         <url>http://github.com/webjars/highlightjs-badge</url>
         <connection>scm:git:https://github.com/webjars/highlightjs-badge.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/highlightjs-badge.git</developerConnection>
-        <tag>highlightjs-badge-0.1.6</tag>
+        <tag>HEAD</tag>
     </scm>
     
     <build>
