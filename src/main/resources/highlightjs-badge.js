@@ -116,7 +116,10 @@ function highlightJsBadge(opt) {
 
         // CSS class(es) used to render the done icon.
         checkIconClass: "fa fa-check text-success",
-        checkIconContent: ""  
+        checkIconContent: "",
+        hasLineNumber: "false",
+        title: "Copy to clipboard",
+        label: ""
     };
 
     function initialize(opt) {
@@ -200,6 +203,8 @@ function highlightJsBadge(opt) {
                 
             var html = hudText.replace("{{language}}", lang)
                               .replace("{{copyIconClass}}",options.copyIconClass)
+                              .replace("{{title}}",options.title)
+                               .replace("{{label}}",options.title)
                               .trim();
 
             // insert the Hud panel
@@ -237,9 +242,12 @@ function highlightJsBadge(opt) {
     function copyCodeToClipboard(e) {
         // walk back up to <pre> tag
         var $origCode = e.srcElement.parentElement.parentElement.parentElement;
-    
-        // select the <code> tag and grab text
+        
+        // select the <code> tag and grab text    
         var $code = $origCode.querySelector("pre>code");
+        if(Boolean(options.hasLineNumber)) {
+        	 $code = $origCode.querySelectorAll("pre>code")[1];
+        }
         var text = $code.textContent || $code.innerText;
         
         // Create a textblock and assign the text and add to document
@@ -342,8 +350,8 @@ function highlightJsBadge(opt) {
             "</style>",
             "<div id=\"CodeBadgeTemplate\" style=\"display:none\">",
             "    <div class=\"code-badge\">",
-            "        <div class=\"code-badge-language\" >{{language}}</div>",
-            "        <div  title=\"Copy to clipboard\">",
+            "        <div class=\"code-badge-language\" >{{label}} {{language}}</div>",
+            "        <div  title=\"{{title}}\">",
             "            <i class=\"{{copyIconClass}} code-badge-copy-icon\"></i></i></a>",            
             "        </div>",
             "     </div>",
@@ -357,7 +365,7 @@ function highlightJsBadge(opt) {
         return t;
     }
 
-    initialize();
+    initialize(opt);
 }
 
 
