@@ -117,9 +117,14 @@ function highlightJsBadge(opt) {
         // CSS class(es) used to render the done icon.
         checkIconClass: "fa fa-check text-success",
         checkIconContent: "",
+        // If pre>code plugin line number is active set to true the boolean
         hasLineNumber: "false",
+        // Title on hover
         title: "Copy to clipboard",
-        label: ""
+        // Label in addition to language name on badge     
+        label: "",
+        // If whole badge is "clickable"
+        badgeClickable: "false"
     };
 
     function initialize(opt) {
@@ -200,13 +205,11 @@ function highlightJsBadge(opt) {
             else if (lang == "fox")
                 lang = "foxpro";
 
-                
             var html = hudText.replace("{{language}}", lang)
                               .replace("{{copyIconClass}}",options.copyIconClass)
                               .replace("{{title}}",options.title)
-                               .replace("{{label}}",options.title)
+                              .replace("{{label}}",options.label)
                               .trim();
-
             // insert the Hud panel
             var $newHud = document.createElement("div");
             $newHud.innerHTML = html;
@@ -225,7 +228,7 @@ function highlightJsBadge(opt) {
 
         var $content = document.querySelector(options.contentSelector);
 
-        // single copy click handler
+        // single copy click handler on icon
         $content.addEventListener("click",
             function (e) {                               
                 var $clicked = e.srcElement;
@@ -234,11 +237,19 @@ function highlightJsBadge(opt) {
                     e.cancelBubble = true;
                     copyCodeToClipboard(e);
                 }
+                // on badge
+                if(Boolean(options.badgeClickable)) {
+                	if ($clicked.className.indexOf('code-badge') != -1) {
+                         e.preventDefault();
+                         e.cancelBubble = true;
+                         copyCodeToClipboard(e);
+                    }
+                }
                 return false;
             });
+        
     }
-
-
+  
     function copyCodeToClipboard(e) {
         // walk back up to <pre> tag
         var $origCode = e.srcElement.parentElement.parentElement.parentElement;
@@ -320,6 +331,7 @@ function highlightJsBadge(opt) {
             "        padding: 5px 8px 5px 8px;",
             "        position: absolute;",
             "        right: 0;",
+            (Boolean(options.badgeClickable) ? 'cursor: pointer;' : ''),
             "        top: 0;",
             "    }",            
             "    .code-badge.active {",
